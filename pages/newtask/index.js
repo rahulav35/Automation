@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import React from "react";
 import Abi from "../../components/Abi";
 import Address from "../../components/Address";
@@ -8,6 +9,8 @@ import Interval from "../../components/Interval";
 import Navbar from "../../components/Navbar";
 
 function index() {
+  const router=useRouter()
+
   return (
     <div className="h-[100vh] w-[100vw] flex justify-center items-center flex-col absolute bg-[#242329]">
       <Navbar />
@@ -24,7 +27,7 @@ function index() {
           <Amount />
           <Gas />
           <Interval />
-          <button className="min-h-[45px] w-[25%] bg-[#515563] my-14 ml-10 rounded-xl text-[#f0e7ed] flex justify-center items-center font-mono">
+          <button onClick={()=>router.push("/task")} className="min-h-[45px] w-[25%] bg-[#515563] my-14 ml-10 rounded-xl text-[#f0e7ed] flex justify-center items-center font-mono">
             Create
           </button>
         </div>

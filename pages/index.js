@@ -24,7 +24,7 @@ function index() {
               <button className=" text-md bg-[#ebb39b] h-[55px] w-[150px] rounded-[30px] text-[#202020] font-semibold ">
                 USE CASES
               </button>
-              <button onClick={()=>{router.push("/task")}} className=" text-white text-md border-2 border-[#e1a492] h-[55px] w-[180px] rounded-[30px] font-semibold ">
+              <button onClick={()=>{router.push("/taskpage")}} className=" text-white text-md border-2 border-[#e1a492] h-[55px] w-[180px] rounded-[30px] font-semibold ">
                 {">"} START BUILDING
               </button>
             </div>
