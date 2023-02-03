@@ -1,3 +1,4 @@
+import dynamic from "next/dynamic";
 import React from "react";
 import Documentation from "../../components/Documentation";
 import Icons from "../../components/Icons";
@@ -6,7 +7,7 @@ import Navbar from "../../components/Navbar";
 import Task from "../../components/Task";
 import Taskactivity from "../../components/Taskactivity";
 
-function index() {
+function Index() {
   return (
     <div className="h-[100vh] w-[100vw] bg-[#242329] flex justify-center items-center absolute">
       <Navbar />
@@ -23,4 +24,4 @@ function index() {
   );
 }
 
-export default index;
+export default dynamic(() => Promise.resolve(Index), { ssr: false });

@@ -1,3 +1,4 @@
+import dynamic from "next/dynamic";
 import React from "react";
 import Executions from "../components/executions";
 import Navbar from "../components/Navbar";
@@ -64,30 +65,28 @@ function Task() {
       </div>
       <div className="w-[60vw] h-[80vh] rounded-[20px] bg-black mt-[50px]">
         <div className="w-[100%] h-[10%] flex flex-row items-start justify-between p-[10px] pt-[20px]">
-            <h1 className="text-[17px] font-semibold text-white">Date</h1>
-            <h1 className="text-[17px] font-semibold text-white">TxHash</h1>
-            <h1 className="text-[17px] font-semibold text-white">Status</h1>
-            <h1 className="text-[17px] font-semibold text-white">TxFree</h1>
-
+          <h1 className="text-[17px] font-semibold text-white">Date</h1>
+          <h1 className="text-[17px] font-semibold text-white">TxHash</h1>
+          <h1 className="text-[17px] font-semibold text-white">Status</h1>
+          <h1 className="text-[17px] font-semibold text-white">TxFree</h1>
         </div>
         <div className="w-[100%] min-h-[100%] mt-7">
-            <Executions/>
-            <Executions/>
-            <Executions/>
-            <Executions/>
-            <Executions/>
-            <Executions/>
-            <Executions/>
-            <Executions/>
-            <Executions/>
-            <Executions/>
-            <Executions/>
-            <Executions/>
-
+          <Executions />
+          <Executions />
+          <Executions />
+          <Executions />
+          <Executions />
+          <Executions />
+          <Executions />
+          <Executions />
+          <Executions />
+          <Executions />
+          <Executions />
+          <Executions />
         </div>
       </div>
     </div>
   );
 }
 
-export default Task;
+export default dynamic(() => Promise.resolve(Task), { ssr: false });

@@ -1,10 +1,11 @@
+import dynamic from "next/dynamic";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import React from "react";
 import Header from "../components/Header";
 import Networks from "../components/networks";
 
-function index() {
+function Index() {
   const router = useRouter();
 
   return (
@@ -14,17 +15,22 @@ function index() {
         <div className="h-[94%] w-[82%]  -mt-7 rounded-[40px] flex flex-row justify-between items-end bg-[#181c2a] border-[2px] border-[#181c2a]">
           <div className="h-[75%] w-[43%]   box-border flex flex-col justify-evenly items-start pl-6">
             <h1 className="text-[3.3rem] font-bold tracking-tighter   leading-[57px] max-w-[80%] text-justify bg-gradient-to-r  from-[#f4c1a5] via-[#c97f78] to-[#b56164] inline-block text-transparent bg-clip-text ">
-              Web3's decentralized automation
+              Web3&apos;s decentralized automation
             </h1>
             <h1 className="text-lg text-[#7a7373]  ">
               Enabling developers to create augmented smart contracts that are
               automated, gasless & off-chain aware
             </h1>
-            <div className=" w-[75%] h-[18%] flex justify-around items-center">
-              <button className=" text-md bg-[#ebb39b] h-[55px] w-[150px] rounded-[30px] text-[#202020] font-semibold ">
+            <div className=" w-[75%] h-[18%] flex justify-around items-center gap-x-3">
+              <button className=" text-md bg-[#ebb39b] h-[55px] w-[150px] rounded-[30px] text-[#202020] font-semibold  ">
                 USE CASES
               </button>
-              <button onClick={()=>{router.push("/taskpage")}} className=" text-white text-md border-2 border-[#e1a492] h-[55px] w-[180px] rounded-[30px] font-semibold ">
+              <button
+                onClick={() => {
+                  router.push("/taskpage");
+                }}
+                className=" text-white text-md border-2 border-[#e1a492] h-[55px] w-[180px] rounded-[30px] font-semibold "
+              >
                 {">"} START BUILDING
               </button>
             </div>
@@ -76,4 +82,4 @@ function index() {
   );
 }
 
-export default index;
+export default dynamic(() => Promise.resolve(Index), { ssr: false });

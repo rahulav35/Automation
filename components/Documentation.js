@@ -4,7 +4,7 @@ import { HiOutlineChatAlt2 } from "react-icons/hi";
 
 function Documentation() {
   return (
-    <div className="h-[11%] w-[45%]  flex items-center justify-evenly">
+    <div className="h-[11%] w-[50%]  flex items-center justify-evenly">
       <div className="h-[100%] w-[48%]  flex justify-evenly items-center ">
         <TiDocumentText size={32} color={"white"} />
         <h1 className="text-md text-white font-medium">Documentation</h1>
