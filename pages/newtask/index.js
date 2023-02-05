@@ -38,11 +38,11 @@ function Index() {
       try {
         setLoading(true);
         await axios
-          .post("http://localhost:5002/create", {
+          .post("http://localhost:5001/create", {
             method: "post",
             data: JSON.stringify({
               address: targetAddress,
-              abi: abi,
+              abi: JSON.parse(abi),
               functionName: functionName,
             }),
             headers: {
@@ -51,23 +51,43 @@ function Index() {
           })
           .then(async (res) => {
             if (res.data.data) {
-              const contract = await getSignedContract();
-              const tx = await contract?.createAutomation(
-                targetAddress,
-                gasLimit,
-                interval,
-                res.data.data.executorAddress,
-                { value: ethers.utils.parseEther(initialAmount) }
-              );
-              const txReceipt = await tx.wait(1);
-              if (txReceipt) {
+              console.log(res.data.data.executorAddress);
+              try {
+                const contract = await getSignedContract();
+                const tx = await contract?.createAutomation(
+                  targetAddress,
+                  gasLimit,
+                  interval,
+                  res.data.data.executorAddress,
+                  {
+                    value: ethers.utils.parseEther(initialAmount),
+                  }
+                );
+                const txReceipt = await tx.wait(1);
+                if (txReceipt) {
+                  setLoading(false);
+                  router.push("/task");
+                }
+              } catch (error) {
+                await axios.post("http://localhost:5001/delete", {
+                  method: "post",
+                  data: JSON.stringify({
+                    address: res.data.data.address,
+                  }),
+                  headers: {
+                    "Content-Type": "application/json",
+                  },
+                });
                 setLoading(false);
-                router.push("/task");
               }
+            } else if (res.data.error) {
+              setLoading(false);
             }
+            setLoading(false);
           });
       } catch (error) {
         console.log(error);
+        setLoading(false);
       }
     } else if (!address) {
       alert("connect wallet");
